@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize('postgres://localhost:5432/tripplanner', {logging: false})
+const db = new Sequelize('postgres://localhost:5432/tripplanner', {logging: false});
 
 const Place = db.define('place', {
     address: {
@@ -21,9 +21,8 @@ const Place = db.define('place', {
     location: {
         type: Sequelize.ARRAY(Sequelize.FLOAT),
         allowNull: false
-    }    
-
-})
+    }
+});
 
 const Hotel = db.define('hotel', {
     name: {
@@ -42,8 +41,7 @@ const Hotel = db.define('hotel', {
         type: Sequelize.STRING,
         allowNull: false
     }
-
-})
+});
 
 const Activity = db.define('activity', {
     name: {
@@ -54,8 +52,7 @@ const Activity = db.define('activity', {
         type: Sequelize.STRING,
         allowNull: false
     }
-
-})
+});
 
 const Restaurant = db.define('restaurant', {
     name: {
@@ -74,8 +71,7 @@ const Restaurant = db.define('restaurant', {
             max: 5
         }
     }
-
-})
+});
 
 Hotel.belongsTo(Place);
 Place.hasMany(Hotel);

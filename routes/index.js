@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const Place = require('../models').Place;
 const Hotel = require('../models').Hotel;
@@ -11,8 +11,8 @@ const restaurantPromise = Restaurant.findAll({ include: [ Place ] })
 
 router.get('/', function(req, res, next){
     Promise.all([hotelPromise, activityPromise, restaurantPromise])
-    .then((data)=> res.json(data))
+    .then(data => res.json(data))
     .catch(next);
-    
-})
-module.exports = router
+});
+
+module.exports = router;

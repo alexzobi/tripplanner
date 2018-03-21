@@ -2,6 +2,8 @@ const express = require('express');
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
 const path = require('path');
+const routes = require('../routes')
+const db = require('../models').db
 
 const app = express();
 
@@ -10,18 +12,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(volleyball);
-
-// catch 404 (i.e., no route was hit) and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error("Not Found");
-  err.status = 404;
-  next(err);
-});
-
-// placeholder route
-app.get('/', (req, res, next) => {
-  res.send('Yo');
-});
+app.use('/api', routes)
 
 app.use('/', (err, req, res, next) => {
   console.error(err.stack);
